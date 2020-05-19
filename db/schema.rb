@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20200518220602) do
 
-  create_table "interview_requests", force: :cascade do |t|
-    t.integer "status"
-    t.integer "interview_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["interview_id"], name: "index_interview_requests_on_interview_id"
-  end
-
   create_table "interviews", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -13,13 +13,11 @@ class Interview < ApplicationRecord
   attr_accessor :user_presence
 
   def interviewee
-    role = Role.find_by(name: :Interviewee)
-    User.joins(:roles).where(id: self.users.map(&:id)).where(roles: {name: :Interviewee, id: role.id}).first
+    User.joins(:roles).where(id: self.users.map(&:id)).where(roles: {name: :Interviewee}).first
   end
 
   def interviewer
-    role = Role.find_by(name: :Interviewer)
-    User.joins(:roles).where(id: self.users.map(&:id)).where(roles: {name: :Interviewer, id: role.id}).first
+    User.joins(:roles).where(id: self.users.map(&:id)).where(roles: {name: :Interviewer}).first
   end
 
   def assign_interviewee(interviewee_id)
