@@ -1,0 +1,23 @@
+<h1>Interviews</h1>
+
+<table>
+  <%= render 'form_head' %>
+
+  <tbody>
+    <% @interviews.each do |interview| %>
+      <tr>
+        <%= render interview %>
+        <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
+        <% if current_user.is_admin? %>
+          <td><%= link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% unless current_user.is_admin? %>
+  <%= link_to 'New Interview', new_interview_path %>
+<% end %>
+

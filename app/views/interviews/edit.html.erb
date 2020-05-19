@@ -1,0 +1,29 @@
+<h1>Editing Interview</h1>
+<% if current_user.is_admin? %>
+  <% unless @interview.interviewee %>
+    <select id="interviewee_select"   style="width: 150px; height: 20px;">
+        <option> </option>
+    </select>
+    <br />
+    <button type="button" id="assign_interviewee">Assign Interviewee</button>
+    <%= button_to "Assign Interviewee", { :action => "assign_interviewee" }, :method => :put %>
+    <br/>
+  <% end %>
+  <% unless @interview.interviewer %>
+    <select id="interviewer_select"   style="width: 150px; height: 20px;">
+      <option> </option>
+    </select>
+    <br/>
+    <button type="button" id="assign_interviewer">Assign Interviewer</button>
+    <%= button_to "Assign Interviewer", { :action => "assign_interviewer" }, :method => :put %>
+    <br/>
+  <% end %>
+  <h2>Update Status </h2>
+  <%= select_tag :status, options_for_select(Interview.statuses), :id => "status_id" %>
+  <br /> <br/>
+<% else%>
+  <%= render 'form', interview: @interview %>
+<% end %>>
+
+<%= link_to 'Show', @interview %> |
+<%= link_to 'Back', interviews_path %>
