@@ -1,0 +1,29 @@
+<%= form_with(model: interview, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :title %><br />
+    <%= form.text_area :title %><br />
+  </div>
+  <div class="field">
+    <%= form.label :interview_date %><br />
+    <%= form.date_field :interview_date, required: true %><br />
+  </div>
+  <div class="field">
+    <%= form.label :start_time %><br />
+    <%= form.time_field :start_time, required: true %> <br />
+  </div>
+  <div class="field">
+    <%= form.label :end_time %><br />
+    <%= form.time_field :end_time, required: true %> <br />
+  </div>
+  <div class="field"
+  <%= form.label :resume %> <br /><br/>
+  <%= form.file_field :attachment %> <br />
+  </div>
+  <div class="field">
+    <%= form.label :presence %> <br />
+    <%= form.select :user_presence, ['Interviewee', 'Interviewer']%> <br />
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
