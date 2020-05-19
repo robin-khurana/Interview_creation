@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>InterviewCreation</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% flash.each do |name, msg| %>
+      <%=content_tag :div, msg, class: alert_for(name) %>
+    <% end %>
+    <%  if user_signed_in?%>
+    <li> <%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>
