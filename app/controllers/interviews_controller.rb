@@ -51,6 +51,7 @@ class InterviewsController < ApplicationController
   def update
     if @interview.update(interview_params)
       flash[:notice] = 'Interview was successfully updated.'
+      @interview.send_updation_mail
       redirect_to @interview
     else
       flash[:alert] = 'Please check the parameter, Updation not allowed'
@@ -85,6 +86,7 @@ class InterviewsController < ApplicationController
   def update_status
     status = params[:status]
     @interview.update(status: status)
+    @interview.send_updation_mail
     render json:{
         data: "Status successfully updated"
     }
