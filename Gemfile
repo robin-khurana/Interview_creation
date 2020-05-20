@@ -57,6 +57,10 @@ gem 'bootstrap-sass'
 gem 'pundit'
 gem 'carrierwave'
 gem 'jquery-rails'
-gem 'select2-rails', '~> 4.0.1' 
+gem 'select2-rails', '~> 4.0.1'
+gem 'sidekiq'
+gem 'sinatra'
+gem 'redis-namespace'
+gem "simple_calendar", "~> 2.0"
  
 
