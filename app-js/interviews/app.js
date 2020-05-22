@@ -13,8 +13,7 @@ import Utils        from './services/utils.js'
 const routes = {
     '/'           :    Interviews,
     '/about'      :    About,
-    '/calender'   :    Calender,
-    '/new'        :    New
+    '/calender'   :    Calender
 };
 
 const router = async () => {
