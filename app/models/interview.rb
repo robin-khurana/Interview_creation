@@ -40,6 +40,11 @@ class Interview < ApplicationRecord
     InterviewMailer.reminder_interviewer_mail(self.id).deliver_now
   end
 
+  def as_json(_options={})
+    super(only: [:interview_date, :title, :status],
+          methods: [:interviewee_name, :interviewer_name, :interview_start_time, :interview_end_time, :resume_url])
+  end
+
   private
   def end_must_be_after_start
     if start_time >= end_time
@@ -79,6 +84,35 @@ class Interview < ApplicationRecord
     interview_time = DateTime.new(date.year, date.month, date.day, start_time.hour, start_time.min, start_time.sec, start_time.zone)
     interview_time - 30.minutes
   end
+
+  def interviewee_name
+    if self.interviewee
+      self.interviewee.user_name
+    else
+      "Not Assigned"
+    end
+  end
+
+  def interviewer_name
+    if self.interviewer
+      self.interviewer.user_name
+    else
+      "Not Assigned"
+    end
+  end
+
+  def interview_start_time
+    self.start_time.strftime("%I:%M %p")
+  end
+
+  def interview_end_time
+    self.end_time.strftime("%I:%M %p")
+  end
+
+  def resume_url
+    self.attachment_url
+  end
+
 
 end
 

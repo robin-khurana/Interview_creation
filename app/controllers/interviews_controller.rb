@@ -11,6 +11,16 @@ class InterviewsController < ApplicationController
     else
       @interviews = current_user.interviews
     end
+
+    respond_to do|format|
+      format.json {
+        render json: {
+            success: true,
+            data: @interviews.as_json
+        }
+      }
+      format.html { render :index }
+    end
   end
 
   # GET /interviews/1

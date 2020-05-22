@@ -62,5 +62,5 @@ gem 'sidekiq'
 gem 'sinatra'
 gem 'redis-namespace'
 gem "simple_calendar", "~> 2.0"
- 
+gem 'sprockets-bumble_d' 
 
