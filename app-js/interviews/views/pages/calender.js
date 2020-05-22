@@ -201,8 +201,7 @@ let Calender = {
                         let cellText = document.createTextNode(date);
                         if(isInterviewDate(date, month, year)){
                             cell.classList.add("bg-info");
-                            cellText = document.createElement("button");
-                            cellButton.innerhtml = date
+                            cellText = document.createTextNode("Interview Date")
                         }
 
                         if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
@@ -212,7 +211,6 @@ let Calender = {
                         row.appendChild(cell);
                         date++;
                     }
-
 
                 }
 
