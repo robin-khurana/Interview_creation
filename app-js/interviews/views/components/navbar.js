@@ -18,7 +18,7 @@ let Navbar = {
                         <div class="navbar-end">
                             <div class="navbar-item">
                                 <div class="buttons">
-                                    <a class="button is-primary" href="javascript:void(0)/new">
+                                    <a class="button is-primary" onclick="window.location.href = '/#/new';">
                                         <strong>New Interview</strong>
                                     </a>
                                 </div>

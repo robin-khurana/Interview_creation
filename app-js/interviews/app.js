@@ -4,6 +4,8 @@ import Interviews   from './views/pages/interviews.js'
 import About        from './views/pages/about.js'
 import Error404     from './views/pages/error404.js'
 import Calender     from  './views/pages/calender.js'
+import New          from  './views/pages/new.js'
+import Show         from  './views/pages/show.js'
 
 import Navbar       from './views/components/navbar.js'
 import Bottombar    from './views/components/bottombar.js'
@@ -11,9 +13,11 @@ import Bottombar    from './views/components/bottombar.js'
 import Utils        from './services/utils.js'
 
 const routes = {
-    '/'           :    Interviews,
-    '/about'      :    About,
-    '/calender'   :    Calender
+    '/'                 :    Interviews,
+    '/about'            :    About,
+    '/calender'         :    Calender,
+    '/new'              :    New,
+    '/interviews/:id'   :    Show
 };
 
 const router = async () => {
@@ -22,6 +26,7 @@ const router = async () => {
     let parsedURL = (request.resource ? '/' + request.resource : '/') + (request.id ? '/:id' : '') + (request.verb ? '/' + request.verb : '')
     let page = routes[parsedURL] ? routes[parsedURL] : Error404;
     content.innerHTML = await page.render();
+
     page.postRender();
 };
 

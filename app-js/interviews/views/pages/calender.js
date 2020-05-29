@@ -1,6 +1,5 @@
 import Interviews from "./interviews";
 
-
 let Calender = {
 
     render : async () => {
@@ -115,7 +114,6 @@ let Calender = {
         return view
     },
 
-
     postRender : async () => {
         let interviewsData = await Interviews.interviewData();
         let today = new Date();
@@ -222,7 +220,6 @@ let Calender = {
         document.getElementById("next").addEventListener("click", next);
         document.getElementById("month").addEventListener("change", jump);
         document.getElementById("year").addEventListener("change", jump);
-
     }
 };
 
