@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
 
   get '/get_interview_users' => 'application#get_interview_users'
+  get '/fetchInterview' => 'application#fetch_id'
 
   root 'interviews#index'
 

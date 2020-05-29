@@ -26,6 +26,20 @@ class InterviewsController < ApplicationController
   # GET /interviews/1
   # GET /interviews/1.json
   def show
+    is_admin = 0
+    if current_user.is_admin?
+      is_admin = 1
+    end
+
+    respond_to do |format|
+      format.json {
+        render json: {
+            success: true,
+            admin: is_admin,
+            data: @interview.as_json
+        }
+      }
+    end
   end
 
   # GET /interviews/new
@@ -49,10 +63,8 @@ class InterviewsController < ApplicationController
         @interview.assign_interviewer(current_user.id)
       end
       flash[:success] = "Interview has been requested!"
-      redirect_to @interview
     else
       flash[:alert] = "Unable to complete interview request, Please check parameters"
-      render :new
     end
   end
 

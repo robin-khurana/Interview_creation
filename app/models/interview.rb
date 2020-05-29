@@ -7,7 +7,7 @@ class Interview < ApplicationRecord
   has_many :users, through: :user_interview_roles
 
   enum status: {requested: 0, approved: 1, declined: 2, completed: 3}
-  validates :start_time, :end_time, :interview_date, presence: true
+  validates :start_time, :end_time, :interview_date, :attachment, presence: true
   validates :title, uniqueness: true, length: {minimum: 5, maximum: 50}
   validate :end_must_be_after_start
 
@@ -45,6 +45,21 @@ class Interview < ApplicationRecord
           methods: [:interviewee_name, :interviewer_name, :interview_start_time, :interview_end_time, :resume_url])
   end
 
+  def send_updation_mail
+    InterviewMailer.update_interviewer_email(self.id).deliver_now
+    InterviewMailer.update_interviewee_email(self.id).deliver_now
+  end
+
+  def send_declined_mail
+    InterviewMailer.decline_interviewee_email(self.id).deliver_now
+    InterviewMailer.decline_interviewer_email(self.id).deliver_now
+  end
+
+  def send_completed_mail
+    InterviewMailer.completion_interviewee_email(self.id).deliver_now
+    InterviewMailer.completion_interviewer_email(self.id).deliver_now
+  end
+
   private
   def end_must_be_after_start
     if start_time >= end_time
@@ -61,21 +76,6 @@ class Interview < ApplicationRecord
     when'completed'
       send_completed_mail
     end
-  end
-
-  def send_updation_mail
-    InterviewMailer.update_interviewer_email(self.id).deliver_now
-    InterviewMailer.update_interviewee_email(self.id).deliver_now
-  end
-
-  def send_declined_mail
-    InterviewMailer.decline_interviewee_email(self.id).deliver_now
-    InterviewMailer.decline_interviewer_email(self.id).deliver_now
-  end
-
-  def send_completed_mail
-    InterviewMailer.completion_interviewee_email(self.id).deliver_now
-    InterviewMailer.completion_interviewer_email(self.id).deliver_now
   end
 
   def reminder_time

@@ -14,4 +14,14 @@ class ApplicationController < ActionController::Base
         data: request_data
     }
   end
+
+  def fetch_id
+    title = params[:title]
+    id = Interview.find_by(title: title).id
+
+    render json: {
+        id: id
+    }
+  end
+
 end
