@@ -1,36 +1,10 @@
-<h1>Interviews</h1>
+<body>
+<div id="header_container"></div>
 
-<table>
-  <%= render 'form_head' %>
-  <tbody>
-    <% @interviews.each do |interview| %>
-      <tr>
-        <%= render interview %>
-        <td><%= link_to 'Edit', edit_interview_path(interview) %></td>
-        <% if current_user.is_admin? %>
-          <td><%= link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="page_container" class="container pageEntry" >
+  <div id="calender"> </div>
+</div>
 
-<br> <br>
-
-<% unless current_user.is_admin? %>
-    <%= month_calendar events: @interviews do |date, interviews| %>
-      <%= date %>
-
-      <% interviews.each do |interview| %>
-       <div>
-        <%= interview.start_time %>
-       </div>
-      <% end %>
-    <% end %>
-<% end %>
-
-<br>
-<% unless current_user.is_admin? %>
-  <%= link_to 'New Interview', new_interview_path %>
-<% end %>
+<div id="footer_container"></div>
+</body>
 

@@ -8,6 +8,12 @@ Bundler.require(*Rails.groups)
 
 module InterviewCreation
   class Application < Rails::Application
+
+    extend Sprockets::BumbleD::DSL
+
+    configure_sprockets_bumble_d do |config|
+      config.babel_config_version = 1
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
